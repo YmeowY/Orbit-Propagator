@@ -70,19 +70,19 @@ for i = [1:last]
 end
 
 %% data visualization
-% figure(1);
-% set(gcf,'Position',[100, 100, 800, 400]);
-% plot(orb(:, 1:3));
-% legend('rx', 'ry', 'rz');
-% 
-% figure(2);
-% set(gcf,'Position',[100, 100, 800, 400]);
-% plot(orb(:, 4:6));
-% legend('vx', 'vy', 'vz');
-% 
-% figure(3);
-% set(gcf,'Position',[100, 100, 800, 400]);
-% plot(kpl(:, 6));
+figure(1);
+set(gcf,'Position',[100, 100, 800, 400]);
+plot(orb(:, 1:3));
+legend('rx', 'ry', 'rz');
+
+figure(2);
+set(gcf,'Position',[100, 100, 800, 400]);
+plot(orb(:, 4:6));
+legend('vx', 'vy', 'vz');
+
+figure(3);
+set(gcf,'Position',[100, 100, 800, 400]);
+plot(kpl(:, 6));
 
 %% after works -- data examination
 % changing of Keplerian orbits

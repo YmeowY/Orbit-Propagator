@@ -1,5 +1,5 @@
 function [dr, dv] = orbitProp_J2(r, v, ha)
-% orbit propagator <--- <>
+% orbit propagator
 %% global variables
 J2 = 1.0826e-3; % geopotential variable of earth
 % J2 = 0; % set to 0 for 2 body mode
@@ -19,11 +19,11 @@ R = norm(r);
 a_2body = mu * (-r) / (R ^ 3);
 
 % J2 part
-A_J2 = 0.5 * J2 * Re ^ 2;
+A_J2 = 3 * J2 * mu * Re ^ 2 / (2 * R ^ 5);
 
-a_J2(1) = mu * A_J2 * (15 * x * z ^ 2 / (R ^ 7) - 3 * x / (R ^ 5));
-a_J2(2) = mu * A_J2 * (15 * y * z ^ 2 / (R ^ 7) - 3 * y / (R ^ 5));
-a_J2(3) = mu * A_J2 * (15 * z ^ 3 / (R ^ 7) - 9 * z / (R ^ 5));
+a_J2(1) = A_J2 * (5 * z ^ 2 / R ^ 2 - 1) * x;
+a_J2(2) = A_J2 * (5 * z ^ 2 / R ^ 2 - 1) * y;
+a_J2(3) = A_J2 * (5 * z ^ 2 / R ^ 2 - 3) * z;
 
 dv = a_2body + a_J2;
 
