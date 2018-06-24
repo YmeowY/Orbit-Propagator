@@ -43,6 +43,22 @@ for i = [1:last]
     v = r_v(4:6);
 end
 
+% for i = [1:last]
+%     r_v = [r, v];
+%     [dr, dv] = orbitProp_J2(r_v(1:3), r_v(4:6), h);
+%     k1 = [dr, dv];
+%     
+%     % calculate r_v
+%     r_v = [r, v] + k1 * h;
+%     
+%     % save data
+%     orb = [orb; r_v];
+%     
+%     % refresh r_v
+%     r = r_v(1:3);
+%     v = r_v(4:6);
+% end
+
 figure(1);
 set(gcf,'Position',[100, 100, 800, 400]);
 plot(orb(:, 1:3));
@@ -63,4 +79,6 @@ figure(3);
 set(gcf,'Position',[100, 100, 800, 400]);
 plot(kpl(:, 1));
 
+
+da = max(kpl(:,1)) - min(kpl(:,1))
 
