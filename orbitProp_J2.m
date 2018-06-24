@@ -1,30 +1,35 @@
-function [dr, dv] = orbitProp_J2(r, v, ha)
-% orbit propagator <--- <>
-%% global variables
-J2 = 1.0826e-3; % geopotential variable of earth
-% J2 = 0; % set to 0 for 2 body mode
-mu = 3.986005e14; % gravitational constant of earth
-Re = 6378.1363e3; % radius of earth
+function [r_new, v_new] = orbitProp_J2(r, v, h)
+% using 4th order Runge-Kutta
+% [r, v]: position and velocity
+% h: step
+%% k1
+ha = 0;
+r_v = [r, v];
+[dr, dv] = CALdr_v(r_v(1:3), r_v(4:6), ha);
+k1 = [dr, dv];
 
-%% velocity <--- dr
-dr = v;
+%% k2
+ha = 0.5 * h;
+r_v = [r, v] + k1 * ha;
+[dr, dv] = CALdr_v(r_v(1:3), r_v(4:6), ha);
+k2 = [dr, dv];
 
-%% acceleration <--- dv
-x = r(1);
-y = r(2);
-z = r(3);
-R = norm(r);
+%% k3
+ha = 0.5 * h;
+r_v = [r, v] + k2 * ha;
+[dr, dv] = CALdr_v(r_v(1:3), r_v(4:6), ha);
+k3 = [dr, dv];
 
-% 2 body part
-a_2body = mu * (-r) / (R ^ 3);
+%% k4
+ha = h;
+r_v = [r, v] + k3 * ha;
+[dr, dv] = CALdr_v(r_v(1:3), r_v(4:6), ha);
+k4 = [dr, dv];
 
-% J2 part
-A_J2 = 0.5 * J2 * Re ^ 2;
-
-a_J2(1) = mu * A_J2 * (15 * x * z ^ 2 / (R ^ 7) - 3 * x / (R ^ 5));
-a_J2(2) = mu * A_J2 * (15 * y * z ^ 2 / (R ^ 7) - 3 * y / (R ^ 5));
-a_J2(3) = mu * A_J2 * (15 * z ^ 3 / (R ^ 7) - 9 * z / (R ^ 5));
-
-dv = a_2body + a_J2;
-
+%% calculate r_v
+dr_v = (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+r_v = [r, v] + dr_v * h;
+%
+r_new = r_v(1:3);
+v_new = r_v(4:6);
 end

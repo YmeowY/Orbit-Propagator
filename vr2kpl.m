@@ -55,12 +55,6 @@ a = 0.5*(ra + rp);
 psi = 2 * atan(sqrt((1 - e) / (1 + e)) * tan(0.5 * theta));
 M = psi - e * sin(psi);
 
-% /*============mean anomaly============*/
-% 	value1 = (1 - ikpl[3])/(1 + ikpl[3]); 
-% 	value2 = 2 * atan(sqrt(value1) * tan(0.5 * ikpl[5])); 
-% 	M = value2 - ikpl[3] * sin(value2); 
-% 	ikpl[5] = M; 
-
 %% assembling Keplerian orbits
 kpl = [a, e, i, OMEGA, omega, M];
 
