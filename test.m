@@ -1,10 +1,13 @@
-close all;
 clearvars;
-orbit = [-4659270.437, -5050283.291, 6002.823, -711.956648, 665.817228, 7557.620520];
+orbit = [-4659270.437, -5050283.291, 6002.823,...
+    -711.956648, 665.817228, 7557.620520];
+% example of Spacecraft Dynamics and Control. P38
+orbit = [-10121e3, -308.219e3, 2281.8e3,...
+    -1.929e3, -6.184e3, -1.727e3];
 r = orbit(1:3); % position of the satellite
 v = orbit(4:6); % velocity of the satellite
 h = 1; % step period
-last = 10000; % length of simulation
+last = 50000; % length of simulation
 orb = []; % save data of orbits
 
 %% orbit propagate
@@ -20,23 +23,11 @@ for i = [1:last]
     kpl = [kpl; tmp];
 end
 
-%% data visualization
-figure(1);
-set(gcf,'Position',[100, 100, 800, 400]);
-plot(orb(:, 1:3));
-legend('rx', 'ry', 'rz');
-
-figure(2);
-set(gcf,'Position',[100, 100, 800, 400]);
-plot(orb(:, 4:6));
-legend('vx', 'vy', 'vz');
-
-figure(3);
-set(gcf,'Position',[100, 100, 800, 400]);
-plot(kpl(:, 6));
-
 %% after works -- data examination
 % changing of Keplerian orbits
 for i = [1:6]
     dkpl(i) = max(kpl(:, i)) - min(kpl(:, i));
 end
+
+save('orb', orb);
+save('kpl', kpl);
