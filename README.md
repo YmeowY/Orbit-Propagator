@@ -16,6 +16,11 @@
 
 ## Change Log
 
+### 2018年6月24日**v0.1**
+
+1. refract the code.
+2. seprate the 4 R-K from test.m
+
 ### 2018年6月24日**v0.0**
 
 1. correct the propagator. *Sapcecraft Dynamics and Control* P37
