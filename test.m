@@ -1,11 +1,13 @@
+close all;
+clearvars;
 orbit = [-4659270.437, -5050283.291, 6002.823, -711.956648, 665.817228, 7557.620520];
 r = orbit(1:3);
 v = orbit(4:6);
-
-%
 h = 1;
 last = 10000;
 orb = [];
+
+%% 4th order Runge-Kutta
 for i = [1:last]
     % k1
     ha = 0;
@@ -43,6 +45,7 @@ for i = [1:last]
     v = r_v(4:6);
 end
 
+%% 1st order Runge-Kutta
 % for i = [1:last]
 %     r_v = [r, v];
 %     [dr, dv] = orbitProp_J2(r_v(1:3), r_v(4:6), h);
@@ -59,26 +62,30 @@ end
 %     v = r_v(4:6);
 % end
 
-figure(1);
-set(gcf,'Position',[100, 100, 800, 400]);
-plot(orb(:, 1:3));
-legend('rx', 'ry', 'rz');
-
-figure(2);
-set(gcf,'Position',[100, 100, 800, 400]);
-plot(orb(:, 4:6));
-legend('vx', 'vy', 'vz');
-
+%% calculate Keplerian orbits from r_v
 kpl = [];
 for i = [1:last]
     tmp = vr2kpl(orb(i, :));
     kpl = [kpl; tmp];
 end
 
-figure(3);
-set(gcf,'Position',[100, 100, 800, 400]);
-plot(kpl(:, 1));
+%% data visualization
+% figure(1);
+% set(gcf,'Position',[100, 100, 800, 400]);
+% plot(orb(:, 1:3));
+% legend('rx', 'ry', 'rz');
+% 
+% figure(2);
+% set(gcf,'Position',[100, 100, 800, 400]);
+% plot(orb(:, 4:6));
+% legend('vx', 'vy', 'vz');
+% 
+% figure(3);
+% set(gcf,'Position',[100, 100, 800, 400]);
+% plot(kpl(:, 6));
 
-
-da = max(kpl(:,1)) - min(kpl(:,1))
-
+%% after works -- data examination
+% changing of Keplerian orbits
+for i = [1:6]
+    dkpl(i) = max(kpl(:, i)) - min(kpl(:, i));
+end

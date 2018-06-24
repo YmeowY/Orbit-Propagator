@@ -11,7 +11,7 @@ r = norm(r_vec);
 v = norm(v_vec);
 vr = r_vec'*v_vec/r;
 
-%% 
+%% angular momentum
 h_vec = cross(r_vec, v_vec);
 h = norm(h_vec);
 
@@ -53,7 +53,7 @@ a = 0.5*(ra + rp);
 
 %% mean anomaly
 psi = 2 * atan(sqrt((1 - e) / (1 + e)) * tan(0.5 * theta));
-M = psi - e * psi;
+M = psi - e * sin(psi);
 
 % /*============mean anomaly============*/
 % 	value1 = (1 - ikpl[3])/(1 + ikpl[3]); 
