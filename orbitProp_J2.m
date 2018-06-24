@@ -1,5 +1,5 @@
 function [dr, dv] = orbitProp_J2(r, v, ha)
-% orbit propagator
+% orbit propagator <--- <>
 %% global variables
 J2 = 1.0826e-3; % geopotential variable of earth
 % J2 = 0; % set to 0 for 2 body mode
