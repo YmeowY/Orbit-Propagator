@@ -1,15 +1,15 @@
 function [dr, dv] = orbitProp_J2(r, v, ha)
-% orbit propel
+% orbit propagator
 %% global variables
-J2 = 1.0826e-3;
-% J2 = 0;
-mu = 3.986005e14;
-Re = 6378.1363e3;
+J2 = 1.0826e-3; % geopotential variable of earth
+% J2 = 0; % set to 0 for 2 body mode
+mu = 3.986005e14; % gravitational constant of earth
+Re = 6378.1363e3; % radius of earth
 
-%% v
+%% velocity <--- dr
 dr = v;
 
-%% a
+%% acceleration <--- dv
 x = r(1);
 y = r(2);
 z = r(3);

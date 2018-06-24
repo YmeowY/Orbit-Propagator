@@ -1,11 +1,11 @@
 close all;
 clearvars;
 orbit = [-4659270.437, -5050283.291, 6002.823, -711.956648, 665.817228, 7557.620520];
-r = orbit(1:3);
-v = orbit(4:6);
-h = 1;
-last = 10000;
-orb = [];
+r = orbit(1:3); % position of the satellite
+v = orbit(4:6); % velocity of the satellite
+h = 1; % step period
+last = 10000; % length of simulation
+orb = []; % save data of orbits
 
 %% 4th order Runge-Kutta
 for i = [1:last]
