@@ -54,7 +54,11 @@ a = 0.5*(ra + rp);
 %% mean anomaly
 psi = 2 * atan(sqrt((1 - e) / (1 + e)) * tan(0.5 * theta));
 M = psi - e * sin(psi);
-
+if M <= 0
+    M = M + 2 * pi;
+elseif M >= 2 * pi
+    M = M - 2 * pi;
+end
 %% assembling Keplerian orbits
 kpl = [a, e, i, OMEGA, omega, M];
 

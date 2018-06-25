@@ -34,6 +34,11 @@ psi = atan2(dot(r, v) / (e * sqrt(mu * a)), (a - R) / (a * e));
 
 %% M
 M = psi - e * sin(psi);
+if M <= 0
+    M = M + 2 * pi;
+elseif M >= 2 * pi
+    M = M - 2 * pi;
+end
 
 %% w
 X = r(1);

@@ -13,7 +13,7 @@ orbit = [-4659270.437, -5050283.291, 6002.823,...
 r = orbit(1:3); % position of the satellite
 v = orbit(4:6); % velocity of the satellite
 h = 1; % <---------------------- step period -------------
-last = 50000; % <--------------- length of simulation ----
+last = 10000; % <--------------- length of simulation ----
 orb = []; % save data of orbits
 
 %% orbit propagate
@@ -27,8 +27,8 @@ kpl = [];
 for i = 1:last
     r = orb(i, 1:3);
     v = orb(i, 4:6);
-    tmp = rv2kpl(r, v);
-%     tmp = vr2kpl(orb(i, :));
+%     tmp = rv2kpl(r, v);
+    tmp = vr2kpl(orb(i, :));
     kpl = [kpl; tmp];
 end
 

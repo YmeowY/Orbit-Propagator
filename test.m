@@ -3,6 +3,9 @@ load('orb');
 load('stk_kpl_2b');
 load('stk_rv_2b');
 
+for i = 1:6
+    ddkpl(i) = max(kpl(:, i)) - min(kpl(:, i));
+end
 %% dkpl
 kpl_1min = [];
 for i = 1:50000
@@ -34,3 +37,21 @@ end
 len = length(rv_1min);
 stk_rv_2b_ = stk_rv_2b(2:(len+1), :);
 drv = stk_rv_2b_ - rv_1min;
+
+num = 1;
+
+%% [r, v]
+figure(num);
+set(gcf,'Position',[100, 100, 800, 400]);
+plot(drv(:, 1:3));
+legend('drx', 'dry', 'drz');
+xlabel('t(min)');
+ylabel('m');
+
+num = num + 1;
+figure(num);
+set(gcf,'Position',[100, 100, 800, 400]);
+plot(drv(:, 4:6));
+legend('dvx', 'dvy', 'dvz');
+xlabel('t(min)');
+ylabel('m/s');
