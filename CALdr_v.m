@@ -4,7 +4,7 @@ function [dr, dv] = CALdr_v(r, v, ha)
 % ha: step
 %% global variables
 J2 = 1.0826e-3; % geopotential variable of earth
-% J2 = 0; % set to 0 for 2 body mode
+J2 = 0; % set to 0 for 2 body mode
 mu = 3.986005e14; % gravitational constant of earth
 Re = 6378.1363e3; % radius of earth
 

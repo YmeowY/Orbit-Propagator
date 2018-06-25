@@ -1,40 +1,31 @@
-close all;
-clearvars;
-%% example source
-% awaiting for proofing
-orbit = [-4659270.437, -5050283.291, 6002.823,...
-    -711.956648, 665.817228, 7557.620520];
-
-% example of Spacecraft Dynamics and Control. P38
-orbit = [-10121e3, -308.219e3, 2281.8e3,...
-    -1.929e3, -6.184e3, -1.727e3];
-
-%% pre-works
-r = orbit(1:3); % position of the satellite
-v = orbit(4:6); % velocity of the satellite
-h = 1; % <---------------------- step period -------------
-last = 50000; % <--------------- length of simulation ----
-orb = []; % save data of orbits
-
-%% orbit propagate
-for i = [1:last]
-    [r, v] = orbitProp_J2(r, v, h);
-    orb = [orb; r, v];
+%% dkpl
+kpl_1min = [];
+for i = 1:50000
+    if rem(i, 60) == 0
+        kpl_1min = [kpl_1min; kpl(i, :)];
+    end
 end
 
-%% calculate Keplerian orbits from r_v
-kpl = [];
-for i = [1:last]
-    tmp = rv2kpl(orb(i, 1:3), orb(i, 4:6));
-%     tmp = vr2kpl(orb(i, :));
-    kpl = [kpl; tmp];
+len = length(kpl_1min);
+kpl_1min(:, 3:6) = kpl_1min(:, 3:6) * 180 / pi;
+
+stk_kpl_2b_ = [stk_kpl_2b(2:(len+1), 1:5), stk_kpl_2b(2:(len+1), 6)];
+dkpl = stk_kpl_2b_ - kpl_1min;
+
+for i = 1:len
+    if dkpl(i, 6) > 300
+        dkpl(i, 6) = dkpl(i, 6) - 360;
+    end
 end
 
-%% after works -- data examination
-% changing of Keplerian orbits
-for i = [1:6]
-    dkpl(i) = max(kpl(:, i)) - min(kpl(:, i));
+%% dr_v
+rv_1min = [];
+for i = 1:50000
+    if rem(i, 60) == 0
+        rv_1min = [rv_1min; orb(i, :)];
+    end
 end
 
-save('orb', 'orb');
-save('kpl', 'kpl');
+len = length(rv_1min);
+stk_rv_2b_ = stk_rv_2b(2:(len+1), :);
+drv = stk_rv_2b_ - rv_1min;

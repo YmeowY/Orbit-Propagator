@@ -23,7 +23,9 @@ i = acos(h(3) / norm(h));
 
 %% W
 W = atan2(h(1), -h(2));
-
+if W <= 0
+    W = W + 2 * pi
+end
 %% e
 e = sqrt(1 - norm(h) ^ 2 / (mu * a));
 
