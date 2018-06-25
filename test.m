@@ -25,8 +25,8 @@ end
 %% calculate Keplerian orbits from r_v
 kpl = [];
 for i = [1:last]
-%     tmp = rv2kpl(orb(i, 1:3), orb(i, 4:6));
-    tmp = vr2kpl(orb(i, :));
+    tmp = rv2kpl(orb(i, 1:3), orb(i, 4:6));
+%     tmp = vr2kpl(orb(i, :));
     kpl = [kpl; tmp];
 end
 

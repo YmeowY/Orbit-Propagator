@@ -1,8 +1,8 @@
 # Satellite orbit propagator
 
-> copyright &copy; 2018. Kasoll. All right reserved.
-
-**The project is for study only, NOT for commercial activity**
+> **NOTICE**
+>* Welcome to join the development.
+>* **The project is for study only, NOT for commercial activity**.
 
 ## 1. Illustration
 
@@ -12,17 +12,23 @@
 * **vr2kpl.m**: calculate *Keplerian orbits*(kpl) with [r, v].
 * **rv2kpl.m**: new method to calculate *Keplerian orbits*(kpl) with [r, v].
 
+> the propagation is coded according to the book ***Spacecraft Dynamics and Control***.
+
 ### 1.1 Mainflow
 
 1. Run *test.m* to simulate the orbit propagation.
 2. Run *dataVisualization.m* to visualize the data.
 
-## 2. Existing problems
+## 2. Existing problems(HELP WANTED)
 
-* 2 body mode is ok. But it's not right when adding J2 perturbation.(need some help)
-* new method to calculate [r, v] to kpl is not right.
+* 2 body mode is ok. But it's not right when adding J2 perturbation.
 
 ## 3. Change Log
+
+### 2018年6月25日**v0.1.3**
+
+1. amended the new [r, v] to kpl. the *argument of perigee* (w) should be in the range between [-pi, pi].
+2. amended the markdown file: remove the copyright declaration.
 
 ### 2018年6月25日**v0.1.2**
 

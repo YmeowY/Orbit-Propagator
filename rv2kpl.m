@@ -43,6 +43,11 @@ y = a * sin(psi) * sqrt(1 - e ^ 2);
 theta = atan2(y / R, x / R);
 w_theta = atan2(Z / (R * sin(i)), (X * cos(W) + Y * sin(W)) / R);
 w = w_theta - theta;
+if w >= pi
+    w = w - 2 * pi;
+else if w <= -pi
+    w = w + 2 * pi;
+end
 
 kpl = [a, e, i, W, w, M];
 end
