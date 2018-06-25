@@ -15,13 +15,12 @@ set(gcf,'Position',[100, 100, 800, 400]);
 plot(orb(:, 4:6));
 legend('vx', 'vy', 'vz');
 
-%% after works <--- new [r, v] to Keplerian orbits test
-% kpl = [];
-% for i = [1:length(orb)]
-%     tmp = rv2kpl(orb(i, 1:3), orb(i, 4:6));
-%     kpl = [kpl; tmp];
-% end
-
+%% after works
+newkpl = [];
+for i = 1:length(orb)
+    newkpl = [newkpl; rv2kpl(orb(i, 1:3), orb(i, 4:6))];
+end
+dkpl = newkpl - kpl;
 %% Keplerian orbits
 kpl(:, 3:6) = kpl(:, 3:6) * 180 / pi;
 for i = [1:6]

@@ -1,3 +1,4 @@
+close all;
 clearvars;
 %% example source
 % awaiting for proofing
@@ -24,6 +25,7 @@ end
 %% calculate Keplerian orbits from r_v
 kpl = [];
 for i = [1:last]
+%     tmp = rv2kpl(orb(i, 1:3), orb(i, 4:6));
     tmp = vr2kpl(orb(i, :));
     kpl = [kpl; tmp];
 end
@@ -34,5 +36,5 @@ for i = [1:6]
     dkpl(i) = max(kpl(:, i)) - min(kpl(:, i));
 end
 
-save('orb', orb);
-save('kpl', kpl);
+save('orb', 'orb');
+save('kpl', 'kpl');

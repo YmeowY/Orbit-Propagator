@@ -22,30 +22,27 @@ h = cross(r, v);
 i = acos(h(3) / norm(h));
 
 %% W
-N = cross([0; 0; 1], h);
-
-if N(2) >= 0
-    W = acos(N(1) / norm(N));
-else
-    W = 2 * pi - acos(N(1) / norm(N));
-end
+W = atan2(h(1), -h(2));
 
 %% e
 e = sqrt(1 - norm(h) ^ 2 / (mu * a));
 
 %% psi
-psi = atan2((a - R) / (a * e), dot(r, v) / (e * sqrt(mu * a)));
+psi = atan2(dot(r, v) / (e * sqrt(mu * a)), (a - R) / (a * e));
 
 %% M
 M = psi - e * sin(psi);
 
 %% w
-E = 1 / mu * ((V * V - mu / R)*r - R*(dot(r, v)/ R) * v);
-if E(3) >= 0
-    w = acos(dot(N, E) / (norm(N) * norm(E)));
-else
-    w = 2*pi - acos(dot(N, E) / (norm(N) * norm(E)));
-end
+X = r(1);
+Y = r(2);
+Z = r(3);
+x = a * (cos(psi) - e);
+y = a * sin(psi) * sqrt(1 - e ^ 2);
+
+theta = atan2(y / R, x / R);
+w_theta = atan2(Z / (R * sin(i)), (X * cos(W) + Y * sin(W)) / R);
+w = w_theta - theta;
 
 kpl = [a, e, i, W, w, M];
 end

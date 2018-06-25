@@ -6,9 +6,11 @@
 
 ## 1. Illustration
 
-* orbitProp_J2.m: calculate [dr, dv] with [r, v].
-* test.m: including **4th order Runge-Kutta**(4th R-K) and **1st order R-K**(1st R-K).
-* vr2kpl: calculate **Keplerian orbits**(kpl) with [r, v].
+* **orbitProp_J2.m**: use CALdr_v.m to perform orbit propagation.
+* **CALdr_v.m**: calculate [dr, dv] with [r, v].
+* **test.m**: including *4th order Runge-Kutta*(4th R-K) and *1st order R-K*(1st R-K).
+* **vr2kpl.m**: calculate *Keplerian orbits*(kpl) with [r, v].
+* **rv2kpl.m**: new method to calculate *Keplerian orbits*(kpl) with [r, v].
 
 ### 1.1 Mainflow
 
@@ -18,9 +20,15 @@
 ## 2. Existing problems
 
 * 2 body mode is ok. But it's not right when adding J2 perturbation.(need some help)
-* new [r, v] to Keplerian orbits is not right.
+* new method to calculate [r, v] to kpl is not right.
 
 ## 3. Change Log
+
+### 2018年6月25日**v0.1.2**
+
+1. amended the new [r, v] to kpl. *Spacecraft Dynamics and Control* P27.
+
+> But the J2 propagator is still not right. Don't know why. I coded it like what is said in the book, but the result is not like the one in the book(HELP).
 
 ### 2018年6月24日**v0.1.1**
 
