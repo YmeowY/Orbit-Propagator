@@ -12,6 +12,7 @@
 * **vr2kpl.m**: calculate *Keplerian orbits*(kpl) with [r, v].
 * **rv2kpl.m**: new method to calculate *Keplerian orbits*(kpl) with [r, v].
 * **test.m**: script to examinate the result.
+* **RK4.m**: 4th order Runge-Kutta method.
 
 > the propagation is coded according to the book ***Spacecraft Dynamics and Control***.
 
@@ -25,6 +26,10 @@
 * 2 body mode is ok. But it's not right when adding J2 perturbation.
 
 ## 3. Change Log
+
+### 2018年6月29日
+
+1. added **RK4.m** to project.
 
 ### 2018年6月25日**v0.1.4**
 
