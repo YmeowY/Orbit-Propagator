@@ -8,8 +8,8 @@
 
 * **mainflow.m**: an example of How-to.
 * **RK4.m**: 4th order Runge-Kutta method.
-* **Prop_rva**: perform orbit propagation with [r, v, a].
-* **Prop_Kpl**: perform orbit propagation with [a, e, i, W, w, M].
+* **Prop_rva**: perform orbit propagation with [r, v, a]. (Instantaneous perturbation)(瞬时摄动)
+* **Prop_Kpl**: perform orbit propagation with [a, e, i, W, w, M]. (Average perturbation)(平均摄动)
 * **CalForce_Grav.m**: cal acceleration of gravity.
 * **CalForce_J2.m**: cal acceleration of J2.
 * **Trans_kpl2rv.m**: [a, e, i, W, w, M] -> [r, v].
@@ -25,9 +25,12 @@
 
 ## 2. Existing problems(HELP WANTED)
 
-* 2 body mode is ok. But it's not right when adding J2 perturbation.
-
 ## 3. Change Log
+
+### 2018年7月11日
+
+1. clear the project.
+2. modified README.
 
 ### 2018年7月11日**v0.2**
 
