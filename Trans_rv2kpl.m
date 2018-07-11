@@ -1,4 +1,4 @@
-function kpl = rv2kpl(r, v)
+function kpl = Trans_rv2kpl(r, v)
 % calculate Keplerian with [r, v]. Spacecraft Dynamics and Control. P26
 %{
 a: semimajor axis
@@ -41,20 +41,7 @@ elseif M >= 2 * pi
 end
 
 %% w
-X = r(1);
-Y = r(2);
-Z = r(3);
-x = a * (cos(psi) - e);
-y = a * sin(psi) * sqrt(1 - e ^ 2);
-
-theta = atan2(y / R, x / R);
-w_theta = atan2(Z / (R * sin(i)), (X * cos(W) + Y * sin(W)) / R);
-w = w_theta - theta;
-if w >= pi
-    w = w - 2 * pi;
-elseif w <= -pi
-    w = w + 2 * pi;
-end
+w = atan2(sin(psi) * sqrt(1 - e * e), cos(psi) - e);
 
 kpl = [a, e, i, W, w, M];
 end

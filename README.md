@@ -6,13 +6,15 @@
 
 ## 1. Illustration
 
-* **orbitProp_J2.m**: use CALdr_v.m to perform orbit propagation.
-* **CALdr_v.m**: calculate [dr, dv] with [r, v].
-* **mainflow.m**: including *4th order Runge-Kutta*(4th R-K) and *1st order R-K*(1st R-K).
-* **vr2kpl.m**: calculate *Keplerian orbits*(kpl) with [r, v].
-* **rv2kpl.m**: new method to calculate *Keplerian orbits*(kpl) with [r, v].
-* **test.m**: script to examinate the result.
+* **mainflow.m**: an example of How-to.
 * **RK4.m**: 4th order Runge-Kutta method.
+* **Prop_rva**: perform orbit propagation with [r, v, a].
+* **Prop_Kpl**: perform orbit propagation with [a, e, i, W, w, M].
+* **CalForce_Grav.m**: cal acceleration of gravity.
+* **CalForce_J2.m**: cal acceleration of J2.
+* **Trans_kpl2rv.m**: [a, e, i, W, w, M] -> [r, v].
+* **Trans_rv2kpl.m**: [r, v] -> [a, e, i, W, w, M].
+* **test.m**: DIY test.
 
 > the propagation is coded according to the book ***Spacecraft Dynamics and Control***.
 
@@ -26,6 +28,11 @@
 * 2 body mode is ok. But it's not right when adding J2 perturbation.
 
 ## 3. Change Log
+
+### 2018年7月11日**v0.2**
+
+1. refactored the project & code.
+2. J2 tested. *use HPOP(High Precision) model in STK to predict the orbits*
 
 ### 2018年6月29日
 

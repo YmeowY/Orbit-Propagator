@@ -1,4 +1,4 @@
-function dkpl = CAL_dkpl(t, kpl)
+function dkpl = Prop_Kpl(t, kpl)
 %{
 % function: calculation of dkpl
 > kpl = [a, e, i, W, w, M]

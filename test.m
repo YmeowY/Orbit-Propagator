@@ -57,17 +57,22 @@
 % ylabel('m/s');
 
 
-kpl = [6878137, 0.001, 97.4064 * pi /180, 227.481 * pi /180, 0, 0];
-kpls = [];
-orbit = [-4659270.437, -5050283.291, 6002.823,...
-    -711.956648, 665.817228, 7557.620520];
+% kplt = [6878137, 0.001, 97.4064 * pi /180, 227.481 * pi /180, 0, 0];
+% kpls = [];
+% orbit = [-4659270.437, -5050283.291, 6002.823,...
+%     -711.956648, 665.817228, 7557.620520];
+% orbits = [];
+% h = 1;
+% len = 10000;
+% for t = 0:h:len
+%     kpls = [kpls; kplt];
+%     kplt = Prop_KplOrbits(t, kplt, h);
+%     orbits = [orbits; orbit];
+%     [orbit(1:3), orbit(4:6)] = kpl2rv(kplt);
+% end
 orbits = [];
-h = 1;
-len = 10000;
-for t = 0:h:len
-    kpls = [kpls; kpl];
-    kpl = Prop_KplOrbits(t, kpl, h);
-%     orbits = [orbit; orbit];
-%     [orbit(1:3), orbit(4:6)] = rv2(kpl);
+for i = 1:10000
+    [orbit(1:3), orbit(4:6)] = kpl2rv(kpl(i,:));
+    orbits = [orbits; orbit];
 end
 

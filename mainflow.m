@@ -2,42 +2,38 @@
 % clearvars;
 %% example source
 % awaiting for proofing
-orbit = [-4659270.437, -5050283.291, 6002.823,...
-    -711.956648, 665.817228, 7557.620520];
+rva = [-4659270.437, -5050283.291, 6002.823,...
+    -711.956648, 665.817228, 7557.620520,...
+    0, 0, 0];
 
 % example of Spacecraft Dynamics and Control. P38
-% orbit = [-10121e3, -308.219e3, 2281.8e3,...
-%     -1.929e3, -6.184e3, -1.727e3];
+% rva = [-10121e3, -308.219e3, 2281.8e3,...
+%     -1.929e3, -6.184e3, -1.727e3,...
+%     0, 0, 0];
 
 %% pre-works
-r = orbit(1:3); % position of the satellite
-v = orbit(4:6); % velocity of the satellite
 h = 1; % <---------------------- step period -------------
 last = 10000; % <--------------- length of simulation ----
-orb = []; % save data of orbits
+rvas = []; % save data of orbits
+f = @Prop_rva;
 
 %% orbit propagate
-for i = 1:last
-    [r, v] = orbitProp_J2(r, v, h);
-    orb = [orb; r, v];
+for i = 1:h:last
+    rvas = [rvas; rva];
+    rva = RK4(f, i, rva, h);
 end
 
-%% calculate Keplerian orbits from r_v
+%% calculate Keplerian orbits from [r, v, a]
 kpl = [];
+last = length(rvas);
 for i = 1:last
-    r = orb(i, 1:3);
-    v = orb(i, 4:6);
-%     tmp = rv2kpl(r, v);
-    tmp = vr2kpl(orb(i, :));
+    r = rvas(i, 1:3);
+    v = rvas(i, 4:6);
+    tmp = Trans_rv2kpl(r, v);
     kpl = [kpl; tmp];
 end
-
-%% after works -- data examination
-% changing of Keplerian orbits
-% for i = [1:6]
-%     dkpl(i) = max(kpl(:, i)) - min(kpl(:, i));
-% end
+clearvars tmp;
 
 %% save data to files
-save('orb', 'orb');
+save('rvas', 'rvas');
 save('kpl', 'kpl');
