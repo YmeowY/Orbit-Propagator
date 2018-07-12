@@ -21,6 +21,7 @@ a_J2 = CalForce_J2(r);
 %% differetiate relationship
 dr = v;
 dv = a + a_Grav + a_J2;
+% dv = a + a_Grav;
 da = [0, 0, 0];
 
 drva = [dr, dv, da];

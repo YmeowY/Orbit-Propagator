@@ -27,6 +27,10 @@
 
 ## 3. Change Log
 
+### 2018年7月12日**v0.2.1**
+
+1. amended [a, e, i, W, w, M] -> [r, v]. Examined, passed.
+
 ### 2018年7月11日
 
 1. clear the project.
