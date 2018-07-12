@@ -8,11 +8,15 @@ W: right ascension of ascending node
 w: argument of perigee
 M: mean anomaly
 %}
+% ---> Examined, passed.
 %% pre-works
 mu = 3.986005e14; % gravitational constant of earth
 Re = 6378.1363e3; % radius of earth
 R = norm(r);
 V = norm(v);
+X = r(1);
+Y = r(2);
+Z = r(3);
 
 %% a
 a = 0.5 * mu / (mu / R - V ^ 2 / 2);
@@ -41,7 +45,11 @@ elseif M >= 2 * pi
 end
 
 %% w
-w = atan2(sin(psi) * sqrt(1 - e * e), cos(psi) - e);
+x = a * (cos(psi) - e);
+y = a * sin(psi) * sqrt(1 - e * e);
+theta = atan2(y, x);
+theta_w = atan2(Z / sin(i), (X * cos(W) + Y * sin(W)));
+w = theta_w - theta;
 
 kpl = [a, e, i, W, w, M];
 end

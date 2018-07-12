@@ -17,6 +17,7 @@ function: calcalate [r, v] with [a, e, i, W, w, M]
 > v: velocity
 
 % ref: <Spacecraft Dynamics and Control> P26
+% ---> Examined, passed.
 %}
 
 %% pre-works
@@ -38,9 +39,9 @@ end
 n = sqrt(mu / a^3);
 
 %% transfer matrix of [R, V] to [r, v]
-AzW = eul2rotm([W, 0, 0]);
-Axi = eul2rotm([0, 0, i]);
-Azw = eul2rotm([w, 0, 0]);
+AzW = Euler2RotMatrix(3, W);
+Axi = Euler2RotMatrix(1, i);
+Azw = Euler2RotMatrix(3, w);
 A = Azw * Axi * AzW;
 A_1 = inv(A);
 
@@ -60,5 +61,8 @@ V = [Vx; Vy; Vz];
 %% [R, V] to [r, v]
 r = A_1 * R;
 v = A_1 * V;
+
+r = r';
+v = v';
 
 end
